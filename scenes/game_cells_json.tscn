@@ -4,6 +4,8 @@
 
 [node name="game_cells_json" type="Node2D"]
 
+[node name="background" type="Sprite2D" parent="."]
+
 [node name="tab" type="Sprite2D" parent="."]
 texture = ExtResource("1_gne1d")
 centered = false

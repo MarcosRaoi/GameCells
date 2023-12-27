@@ -11,5 +11,11 @@ config_version=5
 [application]
 
 config/name="GameCells"
+run/main_scene="res://scenes/game_cells_json.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://imgs/icon.png"
+
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=900

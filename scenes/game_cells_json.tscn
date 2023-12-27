@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dixgp4mgmpa03"]
+
+[ext_resource type="Texture2D" uid="uid://b258mbd3sb8rd" path="res://imgs/game_cells_json_tab.png" id="1_gne1d"]
+
+[node name="game_cells_json" type="Node2D"]
+
+[node name="tab" type="Sprite2D" parent="."]
+texture = ExtResource("1_gne1d")
+centered = false

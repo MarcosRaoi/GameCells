@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://nl4iewexifq0"]
+
+[ext_resource type="PackedScene" uid="uid://yoheftjc1m62" path="res://scenes/game_cell_container.tscn" id="1_6qy40"]
+
+[node name="games" type="Node2D"]
+
+[node name="game_cells" type="ScrollContainer" parent="."]
+offset_right = 2000.0
+offset_bottom = 1125.0
+scale = Vector2(0.8, 0.8)
+size_flags_vertical = 0
+
+[node name="cells_container" type="HFlowContainer" parent="game_cells"]
+custom_minimum_size = Vector2(2000, 0)
+layout_mode = 2
+
+[node name="game_cell_container" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container5" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container6" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container7" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container2" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container3" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container4" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container8" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container9" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2
+
+[node name="game_cell_container10" parent="game_cells/cells_container" instance=ExtResource("1_6qy40")]
+layout_mode = 2

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameCells"
-run/main_scene="res://scenes/game_cells_json.tscn"
+run/main_scene="res://scenes/main_game_cells_json.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://imgs/icon.png"
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dixgp4mgmpa03"]
+
+[ext_resource type="Texture2D" uid="uid://dtk06vpf8c8pi" path="res://resources/background.tres" id="1_01sk0"]
+[ext_resource type="Texture2D" uid="uid://b258mbd3sb8rd" path="res://imgs/game_cells_json_tab.png" id="2_v4civ"]
+[ext_resource type="PackedScene" uid="uid://nl4iewexifq0" path="res://scenes/games.tscn" id="3_7cy7s"]
+
+[node name="game_cells_json" type="Node2D"]
+
+[node name="background" type="Sprite2D" parent="."]
+scale = Vector2(0.31, 0.27)
+texture = ExtResource("1_01sk0")
+centered = false
+
+[node name="tab" type="Sprite2D" parent="."]
+texture = ExtResource("2_v4civ")
+centered = false
+
+[node name="games" parent="." instance=ExtResource("3_7cy7s")]

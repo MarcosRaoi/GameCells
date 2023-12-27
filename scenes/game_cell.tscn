@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0j1ddhsdm4kt"]
+
+[ext_resource type="Texture2D" uid="uid://bpfh4uk2onj7f" path="res://imgs/banners/banner_ycr.png" id="1_45dak"]
+
+[node name="game_cell" type="Control"]
+editor_description = "570x360"
+custom_minimum_size = Vector2(570, 360)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 570.0
+offset_bottom = 360.0
+
+[node name="banner" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(570, 288)
+texture = ExtResource("1_45dak")
+expand_mode = 2
+
+[node name="info" type="ColorRect" parent="."]
+offset_top = 288.0
+offset_right = 570.0
+offset_bottom = 354.0

@@ -44,7 +44,7 @@ func to_json() -> String:
 	json_result += "{"
 	
 	for json_property in TO_JSON_PROPERTIES:
-		json_result += "\n    " # Indentação JSON
+		json_result += GameCellConstants.ADD_NEW_LINE_INDENT_JSON
 		json_result += GameCellConstants.TO_JSON_TEMPLATE % [json_property, _get_property_value(json_property)]
 	
 	# Remove dos valores inteiros as strings demarcadoras "$x$"
@@ -55,7 +55,7 @@ func to_json() -> String:
 	if json_result.ends_with(","):
 		json_result = json_result.trim_suffix(",")
 	
-	json_result += "\n    " # Indentação JSON	
+	json_result += GameCellConstants.ADD_NEW_LINE_INDENT_JSON	
 	json_result += "},"
 	return json_result
 

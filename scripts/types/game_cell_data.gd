@@ -47,12 +47,16 @@ func to_json() -> String:
 	json_result += "{"
 	
 	for json_property in TO_JSON_PROPERTIES:
-		json_result += "\n    " + GameCellConstants.INDENT_JSON # Indentação JSON
+		json_result += GameCellConstants.ADD_NEW_LINE_INDENT_JSON
+		json_result += GameCellConstants.INDENT_JSON
+		
 		json_result += GameCellConstants.TO_JSON_TEMPLATE % [json_property, get("_%s" % json_property)]
 	
 	if json_result.ends_with(","):
 		json_result = json_result.trim_suffix(",")
 	
-	json_result += "\n    " + GameCellConstants.INDENT_JSON # Indentação JSON
+	json_result += GameCellConstants.ADD_NEW_LINE_INDENT_JSON
+	json_result += GameCellConstants.INDENT_JSON
+	
 	json_result += "}"
 	return json_result

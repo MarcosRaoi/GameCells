@@ -1,6 +1,7 @@
 class_name GameCellConstants
-extends Node
+extends Object
 
+const ADD_NEW_LINE_INDENT_JSON: String = "\n    " # Indentação JSON
 const INDENT_JSON: String = "    " # Indentação JSON
 const TO_JSON_TEMPLATE: String = INDENT_JSON + '"%s": "%s",'
 

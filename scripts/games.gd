@@ -90,6 +90,8 @@ func _store_json(json_result) -> void:
 ##### Signal methods -------------------------------------------------------------------------------
 
 
+## Função para gerar JSON, ela ordena o _game_cells_objects na "order_in_json"
+## identa o resultado JSON chamando as .to_json() das GameCells e passa o resultado para _store_json() 
 func _on_json_generate_button_button_down():
 	# Ordena de volta para a ordem de publicação no game_cells.json
 	var game_cells_json: Array[GameCellObject] = _game_cell_objects.duplicate()
@@ -98,11 +100,11 @@ func _on_json_generate_button_button_down():
 	var json_result: String = ""
 	
 	json_result += "["
-	json_result += "\n    " # Indentação JSON
+	json_result += GameCellConstants.ADD_NEW_LINE_INDENT_JSON
 	
 	for game_cell_object in game_cells_json:
 		json_result += game_cell_object.to_json()
-		json_result += "\n    " # Indentação JSON
+		json_result += GameCellConstants.ADD_NEW_LINE_INDENT_JSON
 	
 	if json_result.ends_with(",\n    "):
 		json_result = json_result.trim_suffix(",\n    ")

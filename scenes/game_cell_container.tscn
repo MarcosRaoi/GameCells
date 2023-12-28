@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://yoheftjc1m62"]
+[gd_scene load_steps=3 format=3 uid="uid://yoheftjc1m62"]
 
 [ext_resource type="PackedScene" uid="uid://b0j1ddhsdm4kt" path="res://scenes/game_cell.tscn" id="1_dse78"]
+[ext_resource type="Script" path="res://scripts/game_cell_container.gd" id="1_y84af"]
 
 [node name="game_cell_container" type="Control"]
 custom_minimum_size = Vector2(620, 420)
@@ -12,6 +13,7 @@ offset_right = -934.0
 offset_bottom = -480.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y84af")
 metadata/_edit_vertical_guides_ = [666.0, 620.0]
 metadata/_edit_horizontal_guides_ = [420.0]
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0j1ddhsdm4kt"]
+[gd_scene load_steps=3 format=3 uid="uid://b0j1ddhsdm4kt"]
 
+[ext_resource type="Script" path="res://scripts/game_cell.gd" id="1_7imhg"]
 [ext_resource type="Texture2D" uid="uid://bpfh4uk2onj7f" path="res://imgs/banners/banner_ycr.png" id="1_45dak"]
 
 [node name="game_cell" type="Control"]
@@ -9,13 +10,29 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 570.0
 offset_bottom = 360.0
+script = ExtResource("1_7imhg")
 
 [node name="banner" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(570, 288)
+layout_mode = 0
 texture = ExtResource("1_45dak")
 expand_mode = 2
 
 [node name="info" type="ColorRect" parent="."]
+layout_mode = 0
 offset_top = 288.0
 offset_right = 570.0
 offset_bottom = 354.0
+
+[node name="info_text" type="Label" parent="info"]
+clip_contents = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 560.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+horizontal_alignment = 3
+autowrap_mode = 2
+clip_text = true

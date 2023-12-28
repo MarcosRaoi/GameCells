@@ -16,3 +16,4 @@ texture = ExtResource("2_v4civ")
 centered = false
 
 [node name="games" parent="." instance=ExtResource("3_7cy7s")]
+position = Vector2(0, 48)

@@ -61,23 +61,21 @@ func _create_game_cell_containers() -> void:
 	cells_container.move_child(margin_bottom, -1)
 
 
+## Ordena pelo índice (displayOrder)
+func _sort_game_cells_by_index() -> void:
+	_game_cell_objects.sort_custom(func(a,b): return a._index < b._index)
+
+
 ## Transforma a informação do _load_game_cells em GameCellsData[]
 func _populate_game_cell_objects() -> void:
 	var raw_data: Array =_load_game_cells()
 	var json_order: int = 0
-
+	
 	for each_cell in raw_data:
 		var game_cell_object: GameCellObject = GameCellObject.new(each_cell)
 		game_cell_object.json_order = json_order
 		_game_cell_objects.append(game_cell_object)
 		json_order += 1
-		
-		#print(game_cell_object._name)
-		#print(game_cell_object._index)
 	
-	#print(_game_cell_objects)
-	
-	# Ordena pelo índice
-	_game_cell_objects.sort_custom(func(a,b): return a._index < b._index)
-	
+	_sort_game_cells_by_index()
 	_create_game_cell_containers()

@@ -5,6 +5,9 @@ var _name: String
 var _data: GameCellData # Dictionary JSON
 var _index: int
 
+## Diferente do _index, que é um displayOrder, o jsonOrder é a ordem do objeto carregado
+var json_order: int
+
 #    {
 #        "name": "Vitaminator",
 #        "data": {

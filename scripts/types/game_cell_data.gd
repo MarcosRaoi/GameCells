@@ -1,5 +1,18 @@
 class_name GameCellData
-extends Node
+extends Object
+
+
+const TO_JSON_PROPERTIES: Array = [
+	"key",
+	"info",
+	"link",
+	"target",
+	"platform",
+	"language",
+	"release",
+	"technology"
+]
+
 
 var _key: String
 var _info: String
@@ -27,3 +40,14 @@ func _init(each_cell_data: Dictionary):
 
 
 ##### Public methods -------------------------------------------------------------------------------
+
+
+func to_json() -> String:
+	var json_result: String = ""
+	json_result += "{"
+	
+	for json_property in TO_JSON_PROPERTIES:
+		json_result += GameCellConstants.TO_JSON_TEMPLATE % [json_property, get("_%s" % json_property)]
+	
+	json_result += "}"
+	return json_result

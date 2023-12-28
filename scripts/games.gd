@@ -46,7 +46,14 @@ func _clean_game_cell_containers() -> void:
 			each_child.queue_free()
 
 
+## Ordena pelo índice (displayOrder) o _game_cell_objects
+func _sort_game_cells_by_index() -> void:
+	_game_cell_objects.sort_custom(func(a,b): return a._index < b._index)
+
+
 func _create_game_cell_containers() -> void:
+	_sort_game_cells_by_index()
+	
 	var cells_container: HFlowContainer = _get_cells_container()
 	for game_cell_object in _game_cell_objects:
 		var game_cell_container = game_cell_container_preload.instantiate()
@@ -61,21 +68,32 @@ func _create_game_cell_containers() -> void:
 	cells_container.move_child(margin_bottom, -1)
 
 
-## Ordena pelo índice (displayOrder)
-func _sort_game_cells_by_index() -> void:
-	_game_cell_objects.sort_custom(func(a,b): return a._index < b._index)
-
-
 ## Transforma a informação do _load_game_cells em GameCellsData[]
 func _populate_game_cell_objects() -> void:
 	var raw_data: Array =_load_game_cells()
-	var json_order: int = 0
+	var order_in_json: int = 0
 	
 	for each_cell in raw_data:
 		var game_cell_object: GameCellObject = GameCellObject.new(each_cell)
-		game_cell_object.json_order = json_order
+		game_cell_object.order_in_json = order_in_json
 		_game_cell_objects.append(game_cell_object)
-		json_order += 1
+		order_in_json += 1
 	
-	_sort_game_cells_by_index()
 	_create_game_cell_containers()
+
+
+func _on_json_generate_button_button_down():
+	# Ordena de volta para a ordem de publicação no game_cells.json
+	var game_cells_json: Array[GameCellObject] = _game_cell_objects.duplicate()
+	game_cells_json.sort_custom(func(a,b): return a.order_in_json < b.order_in_json)
+	
+	var json_result: String = ""
+	
+	json_result += "["
+	
+	for game_cell_object in game_cells_json:
+		json_result += game_cell_object.to_json()
+	
+	json_result += "]"
+	
+	print(JSON.stringify(json_result, "\t"))

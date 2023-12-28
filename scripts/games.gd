@@ -80,12 +80,14 @@ func _populate_game_cell_objects() -> void:
 
 
 func _store_json(json_result) -> void:
-	print(json_result)
-	#print(JSON.stringify(json_result, "\t"))
+	var path: String = MainGamesConstants.get_json_path()
+	print("Storing json at...\n", path)
 	
-	print("Storing json at...")
-	var file = FileAccess.open(MainGamesConstants.get_json_path(), FileAccess.WRITE)
+	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(json_result)
+
+
+##### Signal methods -------------------------------------------------------------------------------
 
 
 func _on_json_generate_button_button_down():
@@ -96,10 +98,15 @@ func _on_json_generate_button_button_down():
 	var json_result: String = ""
 	
 	json_result += "["
+	json_result += "\n    " # Indentação JSON
 	
 	for game_cell_object in game_cells_json:
 		json_result += game_cell_object.to_json()
+		json_result += "\n    " # Indentação JSON
 	
-	json_result += "]"
+	if json_result.ends_with(",\n    "):
+		json_result = json_result.trim_suffix(",\n    ")
+	
+	json_result += "\n]"
 	
 	_store_json(json_result)

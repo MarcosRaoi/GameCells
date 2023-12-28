@@ -10,7 +10,6 @@ var _game_cell: Control
 
 
 func setup(game_cell_object: GameCellObject) -> void:
-	print("valeu ta? ", game_cell_object._name)
 	_game_cell = get_node("game_cell")
 	_game_cell.set_info_text(game_cell_object._data._info)
 	var banner_key: String = game_cell_object._data._key

@@ -24,10 +24,7 @@ func _ready():
 
 ## Lê um arquivo json de game_cells.json
 func _load_game_cells() -> Array:
-	var path: String = MainGamesConstants.JSON_path
-	var filename: String = MainGamesConstants.JSON_filename
-	
-	var file = FileAccess.open(path + filename, FileAccess.READ)
+	var file = FileAccess.open(MainGamesConstants.get_json_path(), FileAccess.READ)
 	var data = JSON.parse_string(file.get_as_text())
 	
 	return data
@@ -82,6 +79,15 @@ func _populate_game_cell_objects() -> void:
 	_create_game_cell_containers()
 
 
+func _store_json(json_result) -> void:
+	print(json_result)
+	#print(JSON.stringify(json_result, "\t"))
+	
+	print("Storing json at...")
+	var file = FileAccess.open(MainGamesConstants.get_json_path(), FileAccess.WRITE)
+	file.store_string(json_result)
+
+
 func _on_json_generate_button_button_down():
 	# Ordena de volta para a ordem de publicação no game_cells.json
 	var game_cells_json: Array[GameCellObject] = _game_cell_objects.duplicate()
@@ -96,4 +102,4 @@ func _on_json_generate_button_button_down():
 	
 	json_result += "]"
 	
-	print(JSON.stringify(json_result, "\t"))
+	_store_json(json_result)

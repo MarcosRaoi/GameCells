@@ -46,11 +46,21 @@ func to_json() -> String:
 	for json_property in TO_JSON_PROPERTIES:
 		json_result += GameCellConstants.TO_JSON_TEMPLATE % [json_property, _get_property_value(json_property)]
 	
+	# Remove dos valores inteiros as strings demarcadoras "$x$"
+	json_result = _get_removed_int_demarker(json_result)
+	
 	json_result += "}"
 	return json_result
 
 
 ##### Private methods ------------------------------------------------------------------------------
+
+
+func _get_removed_int_demarker(json_result) -> String:
+	var left: String = GameCellConstants.DEMARK_INT_LEFT
+	var right: String = GameCellConstants.DEMARK_INT_RIGHT
+	var forwhat: String = GameCellConstants.REPLACE_INT_DEMARK
+	return json_result.replace(left, forwhat).replace(right, forwhat)
 
 
 ## O método quando encontra uma propriedade com valor diferente de valores concatenais, chama o método to_json
@@ -61,5 +71,8 @@ func _get_property_value(json_property: String) -> String:
 	
 	if typeof(property_value) == TYPE_OBJECT:
 		return property_value.to_json()
-		
+	
+	if typeof(property_value) == TYPE_INT:
+		return "$" + str(property_value) + "$"
+	
 	return str(property_value)

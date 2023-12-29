@@ -2,18 +2,28 @@ class_name GameCellsContainer
 extends Control
 
 
-
+var _main
 var _game_cell: Control
 
 
 ##### Public methods -------------------------------------------------------------------------------
 
 
-func setup(game_cell_object: GameCellObject) -> void:
+func setup(game_cell_object: GameCellObject, main) -> void:
 	_game_cell = get_node("game_cell")
 	_game_cell.set_info_text(game_cell_object._data._info)
 	var banner_key: String = game_cell_object._data._key
 	_game_cell.set_banner(_load_image_banner(banner_key))
+	
+	_main = main
+
+
+func get_cells_container() -> HFlowContainer:
+	return get_parent()
+
+
+func main():
+	return _main
 
 
 ##### Private methods ------------------------------------------------------------------------------

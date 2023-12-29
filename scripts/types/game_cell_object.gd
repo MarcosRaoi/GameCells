@@ -39,6 +39,10 @@ func _init(each_cell_object: Dictionary):
 ##### Public methods -------------------------------------------------------------------------------
 
 
+func set_index(cell_index: int) -> void:
+	_index = cell_index
+
+
 func to_json() -> String:
 	var json_result: String = ""
 	json_result += "{"

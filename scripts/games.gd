@@ -8,6 +8,9 @@ var _game_cells: ScrollContainer
 var _game_cell_objects: Array[GameCellObject]
 
 
+var someone_is_dragging: bool = false
+var last_hovered: int = -1
+
 ##### Built-in methods -----------------------------------------------------------------------------
  
 
@@ -18,6 +21,20 @@ func _ready():
 	_clean_game_cell_containers()
 	_populate_game_cell_objects()
 
+
+#### Public methods --------------------------------------------------------------------------------
+
+
+func game_cells_count() -> int:
+	return _game_cell_objects.size()
+
+
+func cells_container_child_count() -> int:
+	return _get_cells_container().get_child_count()
+
+
+func last_cell_position() -> int:
+	return cells_container_child_count() - game_cells_count() + 1
 
 #### Private methods -------------------------------------------------------------------------------
 
@@ -51,12 +68,15 @@ func _sort_game_cells_by_index() -> void:
 func _create_game_cell_containers() -> void:
 	_sort_game_cells_by_index()
 	
+	var cell_index: int = 0
+	
 	var cells_container: HFlowContainer = _get_cells_container()
 	for game_cell_object in _game_cell_objects:
 		var game_cell_container = game_cell_container_preload.instantiate()
-		game_cell_container.name = "game_cell_container_" + str(game_cell_object)
-		game_cell_container.setup(game_cell_object)
+		game_cell_container.name = "game_cell_container_" + str(cell_index)
+		game_cell_container.setup(game_cell_object, self)
 		cells_container.add_child(game_cell_container)
+		cell_index += 1
 	
 	# Move o botão de adicionar e a margim para últimas posições.
 	var add_game_cell_button: TextureButton = cells_container.get_node("add_game_cell_button")
@@ -79,9 +99,22 @@ func _populate_game_cell_objects() -> void:
 	_create_game_cell_containers()
 
 
+## Já que as células de jogos podem ter sido reordenadas, atualiza as
+## propriedades _index nos _game_cells_objects pra gerar
+func _update_cells_index_data() -> void:
+	var cells_container: HFlowContainer = _get_cells_container()
+	var cell_index: int = 0
+	
+	for game_cell_object in _game_cell_objects:
+		var game_cell_container = cells_container.get_node("game_cell_container_" + str(cell_index))
+		game_cell_object.set_index(game_cell_container.get_index())
+		
+		cell_index += 1
+
+
 func _store_json(json_result) -> void:
 	var path: String = MainGamesConstants.get_json_path()
-	print("Storing json at...\n", path)
+	print("Storing json at...\n", path, "\n")
 	
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(json_result)
@@ -93,6 +126,9 @@ func _store_json(json_result) -> void:
 ## Função para gerar JSON, ela ordena o _game_cells_objects na "order_in_json"
 ## identa o resultado JSON chamando as .to_json() das GameCells e passa o resultado para _store_json() 
 func _on_json_generate_button_button_down():
+	# Atualiza as propriedades "_index"
+	_update_cells_index_data()
+	
 	# Ordena de volta para a ordem de publicação no game_cells.json
 	var game_cells_json: Array[GameCellObject] = _game_cell_objects.duplicate()
 	game_cells_json.sort_custom(func(a,b): return a.order_in_json < b.order_in_json)

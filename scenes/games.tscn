@@ -64,6 +64,7 @@ layout_mode = 2
 [node name="add_game_cell_button" type="TextureButton" parent="game_cells/cells_container"]
 custom_minimum_size = Vector2(666, 420)
 layout_mode = 2
+mouse_filter = 1
 texture_normal = ExtResource("2_6rne0")
 texture_pressed = ExtResource("3_hwtdu")
 texture_hover = ExtResource("4_jqtaj")
@@ -72,3 +73,4 @@ stretch_mode = 3
 [node name="margin_bottom" type="Control" parent="game_cells/cells_container"]
 custom_minimum_size = Vector2(2000, 100)
 layout_mode = 2
+mouse_filter = 1

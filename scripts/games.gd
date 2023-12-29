@@ -149,6 +149,7 @@ func _connect_add_game_signals() -> void:
 func _add_game_cell() -> void:
 	var last_new_index: int = _game_cell_objects.size()
 	var game_cell_object: GameCellObject = _add_game.game_cell_object(last_new_index)
+	game_cell_object.order_in_json = last_new_index
 	_game_cell_objects.append(game_cell_object)
 	var cells_container: HFlowContainer = _get_cells_container()
 	var game_cell_container = game_cell_container_preload.instantiate()

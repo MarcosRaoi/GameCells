@@ -1,0 +1,176 @@
+[gd_scene load_steps=8 format=3 uid="uid://clihegbtiwaau"]
+
+[ext_resource type="Script" path="res://scripts/add_game.gd" id="1_lchr6"]
+[ext_resource type="Texture2D" uid="uid://q2iqcc8g61lf" path="res://imgs/cancel_game.png" id="1_mboxu"]
+[ext_resource type="Texture2D" uid="uid://caib7qoiuhn5l" path="res://imgs/accept_game.png" id="1_oqlhf"]
+[ext_resource type="Texture2D" uid="uid://b0ut43hp4j8uc" path="res://imgs/accept_game_pressed.png" id="2_bao0e"]
+[ext_resource type="Texture2D" uid="uid://bejdd0caehu5t" path="res://imgs/cancel_game_pressed.png" id="2_ofh15"]
+[ext_resource type="Texture2D" uid="uid://cd4gnjttpp1cd" path="res://imgs/accept_game_hover.png" id="3_g4ns6"]
+[ext_resource type="Texture2D" uid="uid://ccod5fbw2jc7p" path="res://imgs/cancel_game_hover.png" id="3_og1yt"]
+
+[node name="add_game" type="CanvasLayer"]
+script = ExtResource("1_lchr6")
+metadata/_edit_vertical_guides_ = [0.0, 800.0, 666.0, 934.0, 253.0, 1360.0]
+metadata/_edit_horizontal_guides_ = [245.0]
+
+[node name="background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="panel" type="ColorRect" parent="."]
+offset_left = 150.0
+offset_top = 50.0
+offset_right = 1450.0
+offset_bottom = 850.0
+color = Color(0.144531, 0.167969, 0.203125, 1)
+
+[node name="labels" type="Control" parent="panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name" type="Label" parent="panel/labels"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 185.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 50
+text = "Nome:"
+
+[node name="data" type="Label" parent="panel/labels"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 104.0
+offset_right = 190.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 50
+text = "Dados:"
+
+[node name="datas" type="Label" parent="panel/labels"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 195.0
+offset_right = 480.0
+offset_bottom = 843.0
+theme_override_font_sizes/font_size = 30
+text = "     • Chave ID:
+     • Informação:
+     • Link do site:
+     • Plataforma:
+     • Linguagem:
+     • Lançamento:
+     • Tecnologia:
+
+
+"
+
+[node name="inputs" type="Control" parent="panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 36.0
+offset_right = 1209.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 50
+placeholder_text = "Your Creature Rancher"
+
+[node name="key_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 220.0
+offset_right = 1208.0
+offset_bottom = 260.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "ycr"
+
+[node name="info_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 265.0
+offset_right = 1208.0
+offset_bottom = 305.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Your Creature Rancher é um jogo relaxante de colecionar criaturas exóticas (e até personalizadas) em seu pacífico e simples ranchinho."
+
+[node name="link_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 310.0
+offset_right = 1208.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "jogos/Your_Creature_Rancher"
+
+[node name="platform_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 355.0
+offset_right = 1208.0
+offset_bottom = 395.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "PC / Web"
+
+[node name="language_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 400.0
+offset_right = 1208.0
+offset_bottom = 440.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "C#"
+
+[node name="release_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 445.0
+offset_right = 1208.0
+offset_bottom = 485.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "2020/11/02"
+
+[node name="technology_input" type="TextEdit" parent="panel/inputs"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 490.0
+offset_right = 1208.0
+offset_bottom = 530.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Unity WebGL"
+
+[node name="accept_button" type="TextureButton" parent="."]
+offset_left = 526.0
+offset_top = 666.0
+offset_right = 666.0
+offset_bottom = 806.0
+texture_normal = ExtResource("1_oqlhf")
+texture_pressed = ExtResource("2_bao0e")
+texture_hover = ExtResource("3_g4ns6")
+
+[node name="cancel_button" type="TextureButton" parent="."]
+offset_left = 934.0
+offset_top = 666.0
+offset_right = 1074.0
+offset_bottom = 806.0
+texture_normal = ExtResource("1_mboxu")
+texture_pressed = ExtResource("2_ofh15")
+texture_hover = ExtResource("3_og1yt")

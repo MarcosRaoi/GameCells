@@ -6,6 +6,7 @@ const game_cell_container_preload = preload("res://scenes/game_cell_container.ts
 
 var _game_cells: ScrollContainer
 var _game_cell_objects: Array[GameCellObject]
+var _add_game: AddGame
 
 
 var someone_is_dragging: bool = false
@@ -20,6 +21,11 @@ func _ready():
 	
 	_clean_game_cell_containers()
 	_populate_game_cell_objects()
+	
+	_add_game = get_node("add_game")
+	_hide_add_game()
+	
+	_connect_add_game_signals()
 
 
 #### Public methods --------------------------------------------------------------------------------
@@ -120,7 +126,44 @@ func _store_json(json_result) -> void:
 	file.store_string(json_result)
 
 
+func _show_add_game() -> void:
+	_add_game.show()
+
+
+func _hide_add_game() -> void:
+	_add_game.hide()
+
+
+func _connect_add_game_signals() -> void:
+	var _on_accept_button_down: Callable = Callable(self, "_on_accept_button_down")
+	_add_game.accept_button.button_down.connect(_on_accept_button_down)
+	
+	var _on_cancel_button_down: Callable = Callable(self, "_on_cancel_button_down")
+	_add_game.cancel_button.button_down.connect(_on_cancel_button_down)
+
+
+func _add_game_cell() -> void:
+	var last_new_index: int = _game_cell_objects.size()
+	var game_cell_object: GameCellObject = _add_game.game_cell_object(last_new_index)
+	_game_cell_objects.append(game_cell_object)
+	var cells_container: HFlowContainer = _get_cells_container()
+	var game_cell_container = game_cell_container_preload.instantiate()
+	
+	game_cell_container.name = "game_cell_container_" + str(game_cells_count() - 1)
+	game_cell_container.setup(game_cell_object, self)
+	cells_container.add_child(game_cell_container)
+	cells_container.move_child(game_cell_container, - last_cell_position())
+
+
 ##### Signal methods -------------------------------------------------------------------------------
+
+
+func _on_accept_button_down() -> void:
+	_add_game_cell()
+
+
+func _on_cancel_button_down() -> void:
+	_hide_add_game()
 
 
 ## Função para gerar JSON, ela ordena o _game_cells_objects na "order_in_json"
@@ -148,3 +191,7 @@ func _on_json_generate_button_button_down():
 	json_result += "\n]"
 	
 	_store_json(json_result)
+
+
+func _on_add_game_cell_button_button_down():
+	_show_add_game()

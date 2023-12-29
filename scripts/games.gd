@@ -124,6 +124,10 @@ func _store_json(json_result) -> void:
 	
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(json_result)
+	
+	# Salva um JSON no projeto também
+	file = FileAccess.open("res://json/game_cells.json", FileAccess.WRITE)
+	file.store_string(json_result)
 
 
 func _show_add_game() -> void:
